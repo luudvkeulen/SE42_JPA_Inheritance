@@ -57,6 +57,7 @@ public class AuctionMgr  {
         itemDAOJPA = new ItemDAOJPAImpl(em);
         em.getTransaction().begin();
         Bid bid = item.newBid(buyer, amount);
+        em.persist(bid);
         em.getTransaction().commit();
         return bid;
     }

@@ -17,10 +17,9 @@ public class Bid implements Serializable {
     @OneToOne
     private Item item;
 
-    public Bid(User buyer, Money amount, Item item) {
+    public Bid(User buyer, Money amount) {
         this.buyer = buyer;
         this.amount = amount;
-        this.item = item;
     }
 
     public Bid() {}

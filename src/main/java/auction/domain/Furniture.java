@@ -10,4 +10,6 @@ public class Furniture extends Item {
         super(seller, category, description);
         this.material = material;
     }
+
+    public Furniture() {}
 }

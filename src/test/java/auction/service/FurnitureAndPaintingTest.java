@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class FurnitureAndPaintingTest {
 
-    final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionPU");
+    final EntityManagerFactory emf = Persistence.createEntityManagerFactory("auctionUnit");
     final EntityManager em = emf.createEntityManager();
     private AuctionMgr auctionMgr;
     private RegistrationMgr registrationMgr;

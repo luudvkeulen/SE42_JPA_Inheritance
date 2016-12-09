@@ -1,7 +1,6 @@
 package auction.domain;
 
 import nl.fontys.util.Money;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -56,7 +55,7 @@ public class Item implements Comparable, Serializable {
         if (highest != null && highest.getAmount().compareTo(amount) >= 0) {
             return null;
         }
-        highest = new Bid(buyer, amount, this);
+        highest = new Bid(buyer, amount);
         return highest;
     }
 

@@ -12,4 +12,6 @@ public class Painting extends Item {
         this.title = title;
         this.painter = painter;
     }
+
+    public Painting() {}
 }
