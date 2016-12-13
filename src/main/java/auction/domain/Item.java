@@ -8,18 +8,18 @@ import java.io.Serializable;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Item.count", query = "select count(i) from Item i"),
-        @NamedQuery(name = "Item.findById", query = "select i from Item i where i.id = :id"),
+        @NamedQuery(name = "Item.findById", query = "select i from Item i where i.itemid = :id"),
         @NamedQuery(name = "Item.findByDesc", query = "select i from Item i where i.description = :desc")
 })
 public class Item implements Comparable, Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Long itemid;
     @ManyToOne
     private User seller;
     private Category category;
     private String description;
-    @OneToOne
+    @OneToOne(mappedBy = "item")
     private Bid highest;
 
     public Item(User seller, Category category, String description) {
@@ -32,7 +32,7 @@ public class Item implements Comparable, Serializable {
     public Item() {}
 
     public Long getId() {
-        return id;
+        return itemid;
     }
 
     public User getSeller() {
@@ -55,7 +55,7 @@ public class Item implements Comparable, Serializable {
         if (highest != null && highest.getAmount().compareTo(amount) >= 0) {
             return null;
         }
-        highest = new Bid(buyer, amount);
+        highest = new Bid(buyer, amount, this);
         return highest;
     }
 
@@ -66,7 +66,7 @@ public class Item implements Comparable, Serializable {
     public boolean equals(Object o) {
         if (!(o instanceof Item)) return false;
         Item other = (Item)o;
-        if(other.getId() == this.id) return true;
+        if(other.getId() == this.itemid) return true;
         return false;
     }
 }
